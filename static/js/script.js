@@ -3,7 +3,37 @@ let activeCharts = {};
 document.addEventListener('DOMContentLoaded', () => {
     initDashboard();
     initPredictionHandler();
+    createOverlay();
 });
+
+// --- MOBILE NAVIGATION ---
+function toggleSidebar(force) {
+    if (window.innerWidth > 1024) return;
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    const isOpen = sidebar.classList.contains('open');
+    const newState = (force !== undefined) ? force : !isOpen;
+
+    if (newState) {
+        sidebar.classList.add('open');
+        overlay.classList.add('visible');
+        document.body.classList.add('sidebar-open');
+    } else {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('visible');
+        document.body.classList.remove('sidebar-open');
+    }
+}
+
+function createOverlay() {
+    if (document.getElementById('sidebar-overlay')) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'sidebar-overlay';
+    overlay.className = 'sidebar-overlay';
+    overlay.onclick = toggleSidebar;
+    document.body.appendChild(overlay);
+}
 
 // --- NAVIGATION SYSTEM ---
 function showSection(sectionId, element) {
@@ -14,6 +44,9 @@ function showSection(sectionId, element) {
     const label = element.querySelector('span').innerText;
     document.getElementById('breadcrumb-text').innerText = `Home > ${label}`;
     lucide.createIcons();
+
+    // Close sidebar on mobile after selection
+    toggleSidebar(false);
 
     if (sectionId === 'analysis') loadAnalytics();
     if (sectionId === 'performance') loadPerformance();

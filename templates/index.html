@@ -14,10 +14,11 @@
 <body>
     <div class="app-layout">
         <!-- Sidebar Navigation -->
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="logo-area">
                 <i data-lucide="activity" class="logo-icon"></i>
                 <span>Cardio<span>Sense</span></span>
+                <i data-lucide="x" class="menu-close" onclick="toggleSidebar()"></i>
             </div>
             <ul class="nav-links">
                 <li class="active" onclick="showSection('dashboard', this)">
@@ -41,6 +42,9 @@
             <div class="circle circle-2"></div>
 
             <header class="top-header">
+                <div class="menu-toggle" onclick="toggleSidebar()">
+                    <i data-lucide="menu"></i>
+                </div>
                 <div class="breadcrumb">
                     <span id="breadcrumb-text">Home > Dashboard</span>
                 </div>
