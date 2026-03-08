@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioSense AI | Healthcare Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo-area">
+                <i data-lucide="activity" class="logo-icon"></i>
+                <span>Cardio<span>Sense</span></span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" onclick="showSection('dashboard', this)">
+                    <i data-lucide="layout-dashboard"></i> <span>Dashboard</span>
+                </li>
+                <li onclick="showSection('analysis', this)">
+                    <i data-lucide="bar-chart-3"></i> <span>Data Analysis</span>
+                </li>
+                <li onclick="showSection('prediction', this)">
+                    <i data-lucide="stethoscope"></i> <span>Risk Prediction</span>
+                </li>
+                <li onclick="showSection('performance', this)">
+                    <i data-lucide="file-check"></i> <span>Model Analysis</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+
+            <header class="top-header">
+                <div class="breadcrumb">
+                    <span id="breadcrumb-text">Home > Dashboard</span>
+                </div>
+                <div class="user-meta">
+                    <i data-lucide="shield-check"></i>
+                    <span>Secure ML Engine</span>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section">
+                <div class="hero-card glass">
+                    <div class="hero-text">
+                        <h2>Analytics Intelligence</h2>
+                        <p>Providing professional insights into cardiovascular health using Random Forest algorithms
+                            trained on global datasets.</p>
+                    </div>
+                </div>
+                <div class="stat-grid">
+                    <div class="stat-item glass">
+                        <i data-lucide="database"></i>
+                        <div class="stat-info">
+                            <h3>Records Analyzed</h3>
+                            <p id="stat-total">70,000</p>
+                        </div>
+                    </div>
+                    <div class="stat-item glass">
+                        <i data-lucide="heart"></i>
+                        <div class="stat-info">
+                            <h3>Avg Patient Age</h3>
+                            <p id="stat-age">53.3y</p>
+                        </div>
+                    </div>
+                    <div class="stat-item glass">
+                        <i data-lucide="activity"></i>
+                        <div class="stat-info">
+                            <h3>Avg Body Mass</h3>
+                            <p id="stat-bmi">27.6</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Analysis Section -->
+            <section id="analysis" class="content-section hidden">
+                <div class="grid-layout">
+                    <div class="card glass">
+                        <h3>Age Demographics</h3>
+                        <div class="canvas-container"><canvas id="ageDistChart"></canvas></div>
+                    </div>
+                    <div class="card glass">
+                        <h3>Gender Distribution</h3>
+                        <div class="canvas-container"><canvas id="genderPieChart"></canvas></div>
+                    </div>
+                    <div class="card glass">
+                        <h3>Health Metrics Breakdown</h3>
+                        <div class="canvas-container"><canvas id="cholChart"></canvas></div>
+                    </div>
+                    <div class="card glass">
+                        <h3>System Observations</h3>
+                        <div class="obs-list">
+                            <div class="obs-item"><i data-lucide="badge-check"></i> High correlation between Systolic BP
+                                and CVD.</div>
+                            <div class="obs-item"><i data-lucide="badge-check"></i> Age group 50-60 represents peak risk
+                                detection.</div>
+                            <div class="obs-item"><i data-lucide="badge-check"></i> Gender split is balanced across
+                                records.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prediction Section -->
+            <section id="prediction" class="content-section hidden">
+                <div class="prediction-layout">
+                    <div class="form-container card glass">
+                        <h3>Patient Biometrics</h3>
+                        <form id="predictionForm">
+                            <div class="form-grid">
+                                <div class="field"><label>Age</label><input type="number" name="age" value="50"></div>
+                                <div class="field"><label>Gender</label><select name="gender">
+                                        <option value="1">Female</option>
+                                        <option value="2">Male</option>
+                                    </select></div>
+                                <div class="field"><label>Height (cm)</label><input type="number" name="height"
+                                        value="170"></div>
+                                <div class="field"><label>Weight (kg)</label><input type="number" name="weight"
+                                        value="70"></div>
+                                <div class="field"><label>Systolic BP</label><input type="number" name="ap_hi"
+                                        value="120"></div>
+                                <div class="field"><label>Diastolic BP</label><input type="number" name="ap_lo"
+                                        value="80"></div>
+                                <div class="field"><label>Cholesterol</label><select name="cholesterol">
+                                        <option value="1">Normal</option>
+                                        <option value="2">High</option>
+                                        <option value="3">V.High</option>
+                                    </select></div>
+                                <div class="field"><label>Glucose Level</label><select name="gluc">
+                                        <option value="1">Normal</option>
+                                        <option value="2">High</option>
+                                        <option value="3">V.High</option>
+                                    </select></div>
+                            </div>
+                            <div class="habits-row">
+                                <label><input type="checkbox" name="smoke"> Smokers</label>
+                                <label><input type="checkbox" name="alco"> Alcohol</label>
+                                <label><input type="checkbox" name="active" checked> Active</label>
+                            </div>
+                            <button type="submit" class="analyze-btn" id="predictBtn">Run Predictive Engine</button>
+                        </form>
+                    </div>
+                    <div class="results-container hidden" id="resultArea">
+                        <div class="card glass result-viz">
+                            <div class="gauge-box">
+                                <canvas id="gaugeChart"></canvas>
+                                <div class="gauge-text"><span id="probValue">0</span>%</div>
+                            </div>
+                            <div class="verdict">
+                                <h2 id="predictionTitle">Analyzing...</h2>
+                                <p id="predictionDesc"></p>
+                                <button class="reset-btn" onclick="resetApp()">Clear Session</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Section -->
+            <section id="performance" class="content-section hidden">
+                <div class="grid-layout">
+                    <div class="card glass full-span">
+                        <h3>Model Comparisons (Accuracy Score)</h3>
+                        <div class="canvas-container vertical"><canvas id="comparisonChart"></canvas></div>
+                    </div>
+                    <div class="card glass">
+                        <h3>Feature Contribution</h3>
+                        <div class="canvas-container"><canvas id="featureChart"></canvas></div>
+                    </div>
+                    <div class="card glass metrics-display">
+                        <h3>Primary Model Stats</h3>
+                        <div class="metric-row"><span>Accuracy</span><strong id="perf-acc">73.5%</strong></div>
+                        <div class="metric-row"><span>Precision</span><strong id="perf-prec">71.0%</strong></div>
+                        <div class="metric-row"><span>Recall</span><strong id="perf-rec">70.0%</strong></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
