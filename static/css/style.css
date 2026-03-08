@@ -606,8 +606,23 @@ body {
         display: none;
     }
 
-    .sidebar-overlay.visible {
-        display: block;
+    .sidebar .nav-links {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .sidebar .nav-links li span {
+        display: inline-block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        color: white;
+    }
+
+    .sidebar .nav-links li {
+        padding: 20px;
+        margin-bottom: 10px;
     }
 }
 
