@@ -498,72 +498,73 @@ body {
         --sidebar-width: 0px;
     }
 
-    /* Force content to handle its own space */
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
     .app-layout {
         display: block;
         width: 100%;
-        position: relative;
+        overflow-x: hidden;
     }
 
     .sidebar {
         position: fixed;
         left: -300px;
-        /* Fully hidden off-screen */
         top: 0;
         bottom: 0;
         width: 280px;
         height: 100vh;
-        z-index: 2000;
-        /* Above everything */
-        background: var(--bg-panel);
-        transition: left 0.4s ease;
-        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.8);
+        z-index: 2100;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(25px);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 20px 0 60px rgba(0, 0, 0, 0.8);
     }
 
     .sidebar.open {
         left: 0;
-        /* Slides in */
     }
 
     .main-content {
         width: 100% !important;
+        padding: 90px 16px 40px 16px !important;
         margin-left: 0 !important;
-        padding: 80px 16px 20px 16px !important;
-        /* Extra top space for floating header */
     }
 
+    /* Fixed Professional Mobile Header */
     .top-header {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
+        height: 70px;
         z-index: 1500;
         border-radius: 0;
         margin-bottom: 0;
-        padding: 15px 20px;
-        background: rgba(15, 23, 42, 0.8);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        padding: 0 20px;
+        background: rgba(7, 11, 20, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--glass-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .menu-toggle {
-        display: flex !important;
-        background: var(--glass);
-        padding: 8px;
-        border-radius: 8px;
-        margin-right: 15px;
+    /* Hide redundant elements on mobile header */
+    .breadcrumb,
+    .user-meta span {
+        display: none !important;
     }
 
-    .menu-close {
-        display: block !important;
-        position: absolute;
-        right: 20px;
-        top: 30px;
+    .user-meta i {
+        font-size: 1.2rem;
+        color: var(--accent);
     }
 
-    /* Hero Section Mobile Fix */
+    /* Hero Text Adjustments */
     .hero-card {
-        padding: 24px 20px;
-        margin-bottom: 20px;
         border-radius: 16px;
     }
 
